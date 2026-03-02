@@ -60,6 +60,7 @@ public class PalindromeCheckerApp {
         scanner.close();*/
         //UC4
 
+
                 /*Scanner scanner = new Scanner(System.in);
 
                 System.out.print("Enter a string to check: ");

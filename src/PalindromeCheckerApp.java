@@ -113,8 +113,8 @@ public class PalindromeCheckerApp {
             scanner.close();
             */
 
-            //UC6
-            Scanner scanner=new Scanner(System.in);
+        //UC6
+            /*Scanner scanner=new Scanner(System.in);
 
             System.out.print("Enter a string:");
             String input=scanner.nextLine();
@@ -140,6 +140,36 @@ public class PalindromeCheckerApp {
 
             System.out.println("Is palindrome? " + isPalindrome);
             scanner.close();
+            */
+
+        //UC7
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        // Initialize deque
+        Deque<Character> deque = new LinkedList<>();
+
+        // Insert all characters into deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);  // add to rear
+        }
+
+        boolean isPalindrome = true;
+
+        // Compare front and rear characters until deque is empty or mismatch found
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();  // remove from front
+            char rear = deque.removeLast();    // remove from rear
+
+            if (front != rear) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Is palindrome? " + isPalindrome);
+        scanner.close();
 
     }
 

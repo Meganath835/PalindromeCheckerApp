@@ -143,7 +143,7 @@ public class PalindromeCheckerApp {
             */
 
         //UC7
-        Scanner scanner=new Scanner(System.in);
+        /*Scanner scanner=new Scanner(System.in);
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
@@ -170,7 +170,32 @@ public class PalindromeCheckerApp {
 
         System.out.println("Is palindrome? " + isPalindrome);
         scanner.close();
+        */
 
+        //UC8
+        Scanner scanner=new Scanner(System.in);
+
+        System.out.print("Enter the string:");
+        String str=scanner.nextLine();
+        boolean isPalindrome = true;
+        LinkedList<Character> charlist = new LinkedList<>();
+        for (char c : str.toCharArray()) {
+            charlist.add(c);
+        }
+        while (charlist.size() > 1) {
+            char first = charlist.removeFirst();
+            char last  = charlist.removeLast();
+            if (first != last) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if (isPalindrome) {
+            System.out.println("Is it a palindrome?: True");
+       } else {
+            System.out.println("Is it a palindrome?: False");
+       }
     }
 
 }

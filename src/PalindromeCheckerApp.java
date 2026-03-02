@@ -91,7 +91,7 @@ public class PalindromeCheckerApp {
 
         */
         //UC5
-            Scanner scanner=new Scanner(System.in);
+            /*Scanner scanner=new Scanner(System.in);
 
             System.out.print("Enter a string to check:");
             String input=scanner.nextLine();
@@ -110,6 +110,35 @@ public class PalindromeCheckerApp {
 
             System.out.println("Is Palindrome:"+palindrome);
 
+            scanner.close();
+            */
+
+            //UC6
+            Scanner scanner=new Scanner(System.in);
+
+            System.out.print("Enter a string:");
+            String input=scanner.nextLine();
+
+            Queue<Character>queue=new LinkedList<>();
+            Stack<Character> stack = new Stack<>();
+
+        // Enqueue and push characters
+            for (char c : input.toCharArray()) {
+                queue.add(c);
+                stack.push(c);
+            }
+
+            boolean isPalindrome = true;
+
+            // Compare characters dequeued vs popped
+            while (!queue.isEmpty() && !stack.isEmpty()) {
+                if (!queue.remove().equals(stack.pop())) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+
+            System.out.println("Is palindrome? " + isPalindrome);
             scanner.close();
 
     }

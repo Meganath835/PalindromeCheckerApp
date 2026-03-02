@@ -34,6 +34,30 @@ public class PalindromeCheckerApp {
         }*/
 
         //UC3
+        /*Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a string:");
+        String input = scanner.nextLine();
+
+        // Convert to lowercase (optional for case-insensitive check)
+        input = input.toLowerCase();
+
+        String reversed = "";
+
+        // Reverse string using given for loop
+        for(int i = input.length() - 1; i >= 0; i--) {
+            reversed = reversed + input.charAt(i);
+        }
+
+        // Compare original and reversed string
+        if(input.equals(reversed)) {
+            System.out.println("\"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
+        }
+
+        scanner.close();*/
+        //UC4
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter a string:");

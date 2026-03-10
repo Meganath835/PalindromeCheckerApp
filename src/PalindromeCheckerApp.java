@@ -198,7 +198,7 @@ public class PalindromeCheckerApp {
        }*/
 
        //UC9
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a sentence:");
         String inputString = scanner.nextLine();
         //System.out.println("Entered String: "+inputString);
@@ -230,7 +230,51 @@ public class PalindromeCheckerApp {
 
         }
         return false;
+        */
 
+        //UC10
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a sentence:");
+        String inputString = scanner.nextLine();
+        //System.out.println("Entered String: "+inputString);
+        String normalizedString = inputString.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        if(normalizedString == null || normalizedString.trim().isEmpty()){
+            System.out.println("Empty String, Please enter a String");
+            return;
+        }
+
+        LinkedList<Character> ll = new LinkedList<>();
+        for(char c: normalizedString.toCharArray()){
+            ll.addLast(c);
+        }
+
+        boolean isPalindrome = true;
+        while(ll.size()>1){
+            char front = ll.removeFirst();
+            char back = ll.removeLast();
+            if(front != back){
+                isPalindrome = false;
+            }
+        }
+
+        System.out.println("Is it a palindrome: " + isPalindrome);
+
+
+
+    }
+    public static boolean isPalindromeCheck(LinkedList<Character> ll ){
+
+        if(ll.size() <=1){
+            return true;
+
+        }
+        char front = ll.removeFirst();
+        char back = ll.removeLast();
+        if(front==back){
+            return isPalindromeCheck(ll);
+
+        }
+        return false;
     }
 
 }

@@ -233,7 +233,7 @@ public class PalindromeCheckerApp {
         */
 
         //UC10
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a sentence:");
         String inputString = scanner.nextLine();
         //System.out.println("Entered String: "+inputString);
@@ -275,6 +275,49 @@ public class PalindromeCheckerApp {
 
         }
         return false;
+
+         */
+
+        //UC11
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a sentence:");
+        String inputString = scanner.nextLine();
+        //System.out.println("Entered String: "+inputString);
+
+        if(inputString == null || inputString.trim().isEmpty()){
+            System.out.println("Empty String, Please enter a String");
+            return;
+        }
+        PalindromeService str = new PalindromeService();
+        System.out.println("is it Palindrome: "+str.checkPalindrome(inputString));
+
+
+
+
+
+    }
+
+    public static class PalindromeService{
+
+
+        public boolean checkPalindrome(String inputString) {
+            char[] chars = inputString.toCharArray();
+            int start = 0;
+            int end = chars.length - 1;
+
+
+            while (start < end) {
+                if (inputString.charAt(start) != inputString.charAt(end)) {
+                    return false;
+
+                }
+                start++;
+                end--;
+
+            }
+            return true;
+
+        }    //System.out.println("Is it a palindrome: " + isPalindrome);
     }
 
 }

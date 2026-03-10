@@ -322,7 +322,7 @@ public class PalindromeCheckerApp {
          */
 
         //UC12
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter a sentence:");
         String inputString = scanner.nextLine();
@@ -443,5 +443,160 @@ public class PalindromeCheckerApp {
         return false;
 
         }
+
+         */
+
+        //UC13
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a sentence:");
+        String inputString = scanner.nextLine();
+
+        if (inputString == null || inputString.trim().isEmpty()) {
+            System.out.println("Empty String, Please enter a String");
+            return;
+        }
+
+        PalindromeStrategy stackStrategy = new StackStrategy();
+        PalindromeStrategy dequeStrategy = new DequeStrategy();
+
+
+        long startStack = System.nanoTime();
+        boolean stackResult = stackStrategy.isPalindrome(inputString);
+        long endStack = System.nanoTime();
+        long stackTime = endStack - startStack;
+
+
+        long startDeque = System.nanoTime();
+        boolean dequeResult = dequeStrategy.isPalindrome(inputString);
+        long endDeque = System.nanoTime();
+        long dequeTime = endDeque - startDeque;
+
+
+        System.out.println("\n Performance Comparison ");
+
+        System.out.println("Stack Strategy Result: " + stackResult);
+        System.out.println("Stack Strategy Time: " + stackTime + " ns");
+
+        System.out.println("\nDeque Strategy Result: " + dequeResult);
+        System.out.println("Deque Strategy Time: " + dequeTime + " ns");
+
+        if (stackTime < dequeTime) {
+            System.out.println("\nFaster Algorithm: Stack Strategy");
+        } else if (dequeTime < stackTime) {
+            System.out.println("\nFaster Algorithm: Deque Strategy");
+        } else {
+            System.out.println("\nBoth algorithms performed equally.");
+        }
+
+
+    }
+    public static class PalindromeService{
+
+
+        public boolean checkPalindrome(String inputString){
+            char[] chars = inputString.toCharArray();
+            int start = 0;
+            int end = chars.length -1;
+
+
+            while (start < end) {
+                if(inputString.charAt(start) != inputString.charAt(end)){
+                    return false;
+
+                }
+                start++;
+                end--;
+
+            }
+            return true;
+
+            //System.out.println("Is it a palindrome: " + isPalindrome);
+
+
+
+        }
     }
 
+
+    interface PalindromeStrategy{
+        boolean isPalindrome(String inputString);
+    }
+
+    static class StackStrategy implements PalindromeStrategy {
+
+        @Override
+        public boolean isPalindrome(String inputString) {
+
+            String normalizedString = inputString.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+            Stack<Character> stack = new Stack<>();
+
+            for(char c : normalizedString.toCharArray()){
+                stack.push(c);
+            }
+
+            for(char c : normalizedString.toCharArray()){
+                if(c != stack.pop()){
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    static class DequeStrategy implements PalindromeStrategy {
+
+        @Override
+        public boolean isPalindrome(String inputString) {
+
+            String normalizedString = inputString.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+            Deque<Character> deque = new ArrayDeque<>();
+
+            for(char c : normalizedString.toCharArray()){
+                deque.addLast(c);
+            }
+
+            while(deque.size() > 1){
+                char front = deque.removeFirst();
+                char back = deque.removeLast();
+
+                if(front != back){
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    static class PalindromeContext{
+        private PalindromeStrategy strategy;
+
+        public PalindromeContext(PalindromeStrategy strategy){
+            this.strategy = strategy;
+        }
+
+        public boolean execute(String input){
+            return strategy.isPalindrome(input);
+        }
+
+    }
+
+    public static boolean isPalindromeCheck(LinkedList<Character> ll ) {
+
+        if (ll.size() <= 1) {
+            return true;
+
+        }
+        char front = ll.removeFirst();
+        char back = ll.removeLast();
+        if (front == back) {
+            return isPalindromeCheck(ll);
+
+        }
+        return false;
+    }
+}
